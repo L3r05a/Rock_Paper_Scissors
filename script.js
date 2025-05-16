@@ -1,4 +1,5 @@
-//generates computer random values 0 to <1. Multiplying to 3 obtains values <=1, <=2, <3
+//generates computer random values 0 to <1. 
+// Multiplying by 3 generates values <=1, <=2, <3
 function getComputerChoice() {
 let computer = Math.random() * 3;
   if (computer <= 1)  {
@@ -16,16 +17,13 @@ function getHumanChoice() {
  let human = prompt ("rock, paper, scissors?");
  return human.toLowerCase()
 }
-
-
-//resets players score variables to 0
+ 
+//initialise round score variables
 let humanScore = 0;
 let computerScore = 0;
 
-
-//single round logic, feedback, score updater
+//single round logic, score feedback, score updater
 function playRound(humanChoice, computerChoice) {
-
 
     if (humanChoice == computerChoice) {
     console.log("No winner!")}
@@ -55,20 +53,32 @@ function playRound(humanChoice, computerChoice) {
     humanScore++
 
   } else {console.log("invalid input")};
-     
+
   }
 
-//assigns selections to variables
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
+//Game of 5 rounds
+function playGame () {
 
+//loops for 5 iterations
+  for (let i = 0; i < 5; i++)
+     {
+    //invokes new players selections for  each iteration
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    console.log(computerSelection);
+    playRound (humanSelection, computerSelection);
+    }
+if (humanScore > computerScore) {
+  console.log ("you win the game");
+} else if (humanScore == computerScore){
+  console.log("No Game winners")
+}
+else {
+  console.log("you lose the game ");
+}
+}
 
-// uses the above variables as arguements for the playRound function
-playRound(humanSelection, computerSelection);
-
-     
-
+playGame();
 
 
 
